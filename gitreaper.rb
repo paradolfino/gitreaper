@@ -17,11 +17,15 @@ class GitReaper
         end
     end
 
+    def self.add_wait
+        sleep 1
+        GitReaper.execute "git add ."
+        sleep 1
+    end
+
     def self.commit_loop(ref)
             verb = ["modify","change","edit"]
-            sleep 1
-            GitReaper.execute "git add ."
-            sleep 1
+            GitReaper.add_wait
             GitReaper.execute "git commit -m \"#{ref[ref.length - 1]}: #{verb[rand(verb.length)]}: #{ref[ref.length]}\""
     end
 
@@ -29,9 +33,7 @@ class GitReaper
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}: #{why}"
         end
-        sleep 1
-        GitReaper.execute "git add ."
-        sleep 1
+        GitReaper.add_wait
         GitReaper.execute "git commit -m \"what did I change?: #{why}\""
     end
 
