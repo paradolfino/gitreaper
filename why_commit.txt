@@ -1,8 +1,1 @@
-The current date is: Sat 12/23/2017 
-Enter the new date: (mm-dd-yy) : s
-The current date is: Sat 12/23/2017 
-Enter the new date: (mm-dd-yy) : test
-24/12/2017 17:11: testing final commit
-24/12/2017 17:13: test
-24/12/2017 17:16: test input
-24/12/2017 17:18: implement new method of committing - try to make for more sanitary atomic commits
+24/12/2017 17:32: clean up why_commit txt
