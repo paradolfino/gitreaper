@@ -42,8 +42,9 @@ class GitReaper
                 GitReaper.detect_file
             end
         end
-        
-        gets
+        puts "Summarize changes made:"
+        final_commit = gets.chomp
+        GitReaper.atomic(final_commit)
         puts "Reaping"
         GitReaper.execute "git push -u origin #{branch}"
         puts "Executing"
