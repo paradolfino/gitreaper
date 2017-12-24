@@ -4,3 +4,4 @@ The current date is: Sat 12/23/2017
 Enter the new date: (mm-dd-yy) : test
 24/12/2017 17:11: testing final commit
 24/12/2017 17:13: test
+24/12/2017 17:16: test input
