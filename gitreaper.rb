@@ -5,7 +5,7 @@ class GitReaper
     end
 
     def self.detect_file
-        mod = Dir.glob("*/*").max_by {|f| File.mtime(f)}
+        mod = Dir.glob("#{Dir.pwd}**/*").max_by {|f| File.mtime(f)}
         mod = mod.split('/')
         GitReaper.commit_loop(mod)
     end
@@ -22,7 +22,7 @@ class GitReaper
             sleep 1
             GitReaper.execute "git add ."
             sleep 1
-            GitReaper.execute "git commit -m \"#{ref[0]}: #{verb[rand(verb.length)]}: #{ref[1]}\""
+            GitReaper.execute "git commit -m \"#{ref[ref.length - 1]}: #{verb[rand(verb.length)]}: #{ref[ref.length]}\""
     end
 
     def self.atomic(why)
