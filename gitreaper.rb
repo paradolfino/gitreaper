@@ -27,7 +27,7 @@ class GitReaper
 
     def self.atomic(why)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{`date`}: #{why}"
+            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}: #{why}"
         end
         sleep 1
         GitReaper.execute "git add ."
