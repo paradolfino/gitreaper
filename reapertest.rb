@@ -5,7 +5,8 @@ class GitReaper
     end
 
     def self.detect_file
-        mod = Dir.glob("*/*").max_by {|f| File.mtime(f)}
+        #mod = Dir.glob("*/*").max_by {|f| File.mtime(f)}
+        mod = "test/folder"
         mod = mod.split('/')
         GitReaper.commit_loop(mod)
     end
