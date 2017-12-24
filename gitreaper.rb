@@ -39,17 +39,17 @@ class GitReaper
         puts "Preparing to Reap on #{branch} branch."
         reaper = Thread.new do
             while true
-                GitReaper.detect_file
+                GitReaper.detect_file 
             end
+            puts "Summarize changes made:"
+                final_commit = gets.chomp
+                GitReaper.atomic(final_commit)
         end
-        reaper.kill
-        puts "Summarize changes made:"
-        final_commit = gets.chomp
-        GitReaper.atomic(final_commit)
+        gets
         puts "Reaping"
         GitReaper.execute "git push -u origin #{branch}"
         puts "Executing"
-        
+        reaper.kill
     end
 
     def self.start
