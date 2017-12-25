@@ -19,7 +19,7 @@ class GitReaper
         if stalker.include? "nothing to commit" 
             puts @@color_red + "stalking" + @@color_default
         elsif stalker.include? "insert"
-            puts "\033[32m#{stalker}\033[0m"
+            puts @@color_green + stalker + @@color_default
         end
 
     end
