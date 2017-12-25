@@ -33,7 +33,7 @@ class GitReaper
 
     def self.atomic(why, pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}pool[#{pool}]: #{why}"
+            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
@@ -66,7 +66,6 @@ class GitReaper
         GitReaper.atomic(final_commit, thread_pool.join(''))
         puts "Reaping"
         GitReaper.execute "git push -u origin #{branch}"
-        puts "Executing"
         
     end
 
