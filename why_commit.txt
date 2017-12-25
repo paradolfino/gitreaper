@@ -2,3 +2,4 @@
 24/12/2017 17:38: consolidate sleep and git add to make coke dryer
 24/12/2017 18:37: testing new commit pooling
 24/12/2017 18:45pool[550b07]: change to some language under self.execute
+24/12/2017 18:48pool[vvh08z]: change minor to language in self.threader
