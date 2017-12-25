@@ -6,3 +6,4 @@
 24/12/2017 22:09:pool[vs2iyb]: add a dash of holiday color to text output
 24/12/2017 22:14:pool[wvlm2l]: create class variables for output colors for reuse
 24/12/2017 22:16:pool[860i65]: early termination for testing
+24/12/2017 22:25:pool[4u662c]: delete reapertest and edit readme
