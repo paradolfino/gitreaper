@@ -14,7 +14,10 @@ class GitReaper
         stalker = %x{#{param}}
         if stalker.include? "nothing to commit" 
             puts "Stalking"
+        elsif stalker.include? "insert"
+            puts stalker
         end
+
     end
 
     def self.add_wait
