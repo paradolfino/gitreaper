@@ -17,7 +17,7 @@ class GitReaper
     def self.execute(param)
         stalker = %x{#{param}}
         if stalker.include? "nothing to commit" 
-            puts "\033[31m#{"stalking"}\033[0m"
+            puts self.class.color_red + "stalking" + self.class.color_default
         elsif stalker.include? "insert"
             puts "\033[32m#{stalker}\033[0m"
         end
