@@ -14,7 +14,10 @@ class GitReaper
         stalker = %x{#{param}}
         if stalker.include? "nothing to commit" 
             puts "Stalking"
+        elsif stalker.include? "insert"
+            puts stalker
         end
+
     end
 
     def self.add_wait
@@ -30,7 +33,7 @@ class GitReaper
 
     def self.atomic(why, pool)
         open('why_commit.txt', 'a') do |file|
-            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}: #{why}"
+            file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
@@ -63,7 +66,6 @@ class GitReaper
         GitReaper.atomic(final_commit, thread_pool.join(''))
         puts "Reaping"
         GitReaper.execute "git push -u origin #{branch}"
-        puts "Executing"
         
     end
 
