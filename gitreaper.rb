@@ -13,7 +13,7 @@ class GitReaper
     def self.execute(param)
         stalker = %x{#{param}}
         if stalker.include? "nothing to commit" 
-            system 'echo -e "Default \e[31mRed"'
+            puts "\033[31m#{"self"}\033[0m"
         elsif stalker.include? "insert"
             puts stalker
         end
