@@ -23,18 +23,17 @@ class GitReaper
         sleep 1
     end
 
-    def self.commit_loop(ref)
-            verb = ["modify","change","edit"]
+    def self.commit_loop(pool)
             GitReaper.add_wait
-            GitReaper.execute "git commit -m \"#{ref[ref.length - 1]}: #{verb[rand(verb.length)]}: #{ref[ref.length]}\""
+            GitReaper.execute "git commit -m \" commit to pool[#{pool}] at #{Time.now.strftime("%H:%M")} \""
     end
 
-    def self.atomic(why)
+    def self.atomic(why, pool)
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}: #{why}"
         end
         GitReaper.add_wait
-        GitReaper.execute "git commit -m \"what did I change?: #{why}\""
+        GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
     def self.threader(branch)
@@ -52,7 +51,7 @@ class GitReaper
         puts "Preparing to Reap on #{branch} branch."
         reaper = Thread.new do
             while true
-                GitReaper.detect_file 
+                GitReaper.commit_loop(thread_pool.join(''))
             end
             
         end
@@ -61,7 +60,7 @@ class GitReaper
         reaper.kill
         puts "Summarize changes made:"
         final_commit = gets.chomp
-        GitReaper.atomic(final_commit)
+        GitReaper.atomic(final_commit, thread_pool.join(''))
         puts "Reaping"
         GitReaper.execute "git push -u origin #{branch}"
         puts "Executing"
