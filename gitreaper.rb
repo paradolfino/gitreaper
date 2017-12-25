@@ -38,6 +38,12 @@ class GitReaper
     end
 
     def self.threader(branch)
+        thread_bits = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        thread_pool = []
+        thread_fork = [0,1]
+        10.times do
+            do_fork = thread_fork[rand(thread_fork.length)]
+        end
         puts "Preparing to Reap on #{branch} branch."
         reaper = Thread.new do
             while true
