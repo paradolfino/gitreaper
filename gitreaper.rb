@@ -8,11 +8,14 @@ class GitReaper
         
     end
 
+=begin
+    #DEPRECATED - but may use in the future
     def self.detect_file
         mod = Dir.glob("#{Dir.pwd}**/*").max_by {|f| File.mtime(f)}
         mod = mod.split('/')
         GitReaper.commit_loop(mod)
     end
+=end
 
     def self.execute(param)
         stalker = %x{#{param}}
