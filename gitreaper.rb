@@ -39,8 +39,8 @@ class GitReaper
             puts @@color_red + "Stalking for #{@@time_running} secs" + @@color_default
         elsif stalker.include? "insert"
             puts @@color_green + stalker + @@color_default
+            puts "#{@@commits} commits to pool so far"
             @@commits += 1
-            puts "#{@@commits} to pool so far"
         end
     end
 
