@@ -94,7 +94,7 @@ class GitReaper
         puts "Summarize changes made:"
         final_commit = gets.chomp
         GitReaper.atomic(final_commit, thread_pool.join(''))
-        puts "Reaping"
+        puts "Reaping #{@@commits} to pool on branch: #{branch}"
         GitReaper.execute "git push -u origin #{branch}"
         
     end
