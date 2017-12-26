@@ -37,8 +37,8 @@ class GitReaper
             puts @@color_red + "stalking" + @@color_default
         elsif stalker.include? "insert"
             puts @@color_green + stalker + @@color_default
+            @@commits += 1
         end
-
     end
 
     def self.add_wait
@@ -48,7 +48,6 @@ class GitReaper
     end
 
     def self.commit_loop(pool)
-            @@commits += 1
             GitReaper.add_wait
             GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
