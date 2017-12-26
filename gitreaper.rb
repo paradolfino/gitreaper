@@ -35,8 +35,9 @@ class GitReaper
     end
 
     def self.commit_loop(pool)
+            @@commits += 1
             GitReaper.add_wait
-            GitReaper.execute "git commit -m \" commit to pool[#{pool}] at #{Time.now.strftime("%H:%M")} \""
+            GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
     def self.atomic(why, pool)
