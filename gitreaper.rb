@@ -67,6 +67,9 @@ class GitReaper
         thread_bits_nouns = ['cow','rabbit','mountain','river']
         thread_pool = []
         thread_fork = [0,1]
+        thread_pool.push(thread_bits_adjs[rand(4)] + "-")
+        thread_pool.push(thread_bits_verbs[rand(4)] + "-")
+        thread_pool.push(thread_bits_nouns[rand(4)] + "-")
         6.times do
             do_fork = thread_fork[rand(thread_fork.length)]
             if do_fork == 0
