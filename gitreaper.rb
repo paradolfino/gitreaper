@@ -63,7 +63,8 @@ class GitReaper
     def self.threader(branch)
         thread_bits = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         thread_bits_adjs = ['serene','rapid','brilliant','pretty']
-        thread_bits_nouns = 
+        thread_bits_verbs = ['rolling','living','shining','steaming']
+        thread_bits_nouns = ['cow','rabbit','mountain','river']
         thread_pool = []
         thread_fork = [0,1]
         6.times do
