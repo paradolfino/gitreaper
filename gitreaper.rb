@@ -39,8 +39,8 @@ class GitReaper
             puts @@color_red + "Stalking for #{@@time_running} secs" + @@color_default
         elsif stalker.include? "insert"
             puts @@color_green + stalker + @@color_default
+            puts "#{@@commits} commits to pool so far"
             @@commits += 1
-            puts "#{@@commits} to pool so far"
         end
     end
 
@@ -94,7 +94,7 @@ class GitReaper
         puts "Summarize changes made:"
         final_commit = gets.chomp
         GitReaper.atomic(final_commit, thread_pool.join(''))
-        puts "Reaping"
+        puts "Reaping #{@@commits} to pool on branch: #{branch}"
         GitReaper.execute "git push -u origin #{branch}"
         
     end
