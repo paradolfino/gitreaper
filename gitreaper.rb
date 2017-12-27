@@ -13,6 +13,8 @@
 
 $LOAD_PATH << '.'
 
+require 'threader'
+
 class GitReaper
 
     @@color_red = "\033[31m"
