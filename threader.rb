@@ -4,14 +4,14 @@ module Threader
     end
 
     def Threader.bits_adjs
-        ['serene','rapid','brilliant','pretty']
+        ['serene','rapid','brilliant','pretty','lovely','peaceful','happy']
     end
 
     def Threader.bits_verbs
-        ['rolling','living','shining','steaming']
+        ['rolling','living','shining','jumping','baking','running','flying']
     end
 
     def Threader.bits_nouns
-        ['cow','rabbit','mountain','river']
+        ['cows','rabbits','mountains','rivers','horses','cabins','villages','hills']
     end
 end
