@@ -11,6 +11,8 @@
 
 =end
 
+$LOAD_PATH << '.'
+
 class GitReaper
 
     @@color_red = "\033[31m"
