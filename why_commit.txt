@@ -14,3 +14,4 @@
 25/12/2017 21:48:pool[brilliant-steaming-rabbit-5v1uxd]: test new changes to output
 25/12/2017 21:49:pool[brilliant-living-mountain-46naks]: change minor to output
 26/12/2017 21:17:pool[pretty-shining-mountain-egn76i]: begin moving thread stuff to threader.rb and require in gitreaper
+26/12/2017 21:26:pool[serene-living-cow-p66pwf]: finish threader.rb module for extending pool naming possibilities
