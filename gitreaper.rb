@@ -11,8 +11,12 @@
 
 =end
 
-class GitReaper
+$LOAD_PATH << '.'
 
+require 'threader'
+
+class GitReaper
+    include Threader
     @@color_red = "\033[31m"
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
@@ -64,21 +68,18 @@ class GitReaper
     end
 
     def self.threader(branch)
-        thread_bits = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-        thread_bits_adjs = ['serene','rapid','brilliant','pretty']
-        thread_bits_verbs = ['rolling','living','shining','steaming']
-        thread_bits_nouns = ['cow','rabbit','mountain','river']
+        
         thread_pool = []
         thread_fork = [0,1]
-        thread_pool.push(thread_bits_adjs[rand(4)] + "-")
-        thread_pool.push(thread_bits_verbs[rand(4)] + "-")
-        thread_pool.push(thread_bits_nouns[rand(4)] + "-")
+        thread_pool.push(Threader.bits_adjs[rand(4)] + "-")
+        thread_pool.push(Threader.bits_verbs[rand(4)] + "-")
+        thread_pool.push(Threader.bits_nouns[rand(4)] + "-")
         6.times do
             do_fork = thread_fork[rand(thread_fork.length)]
             if do_fork == 0
                 thread_pool.push(rand(9))
             else
-                thread_pool.push(thread_bits[rand(thread_bits.length)])
+                thread_pool.push(Threader.bits[rand(Threader.bits.length)])
             end
         end
         puts "Preparing to Reap on #{branch} branch."
@@ -94,7 +95,7 @@ class GitReaper
         puts "Summarize changes made:"
         final_commit = gets.chomp
         GitReaper.atomic(final_commit, thread_pool.join(''))
-        puts "Reaping #{@@commits} to pool on branch: #{branch}"
+        puts "Reaping #{@@commits-1} to pool on branch: #{branch}"
         GitReaper.execute "git push -u origin #{branch}"
         
     end
