@@ -12,7 +12,7 @@
 =end
 
 $LOAD_PATH << '.'
-
+require 'pathname'
 require 'threader'
 
 class GitReaper
@@ -68,7 +68,7 @@ class GitReaper
     end
 
     def self.threader(branch)
-        pn = Pathname.new("./threader.rb")
+        pn = Pathname.new('threader.rb')
         thread_pool = []
         thread_fork = [0,1]
         if pn.exist?
