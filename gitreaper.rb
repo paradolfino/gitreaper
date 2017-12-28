@@ -86,7 +86,7 @@ class GitReaper
             if do_fork == 0
                 thread_pool.push(rand(9))
             else
-                thread_pool.push(thread_bits[thread_bits.length]])
+                thread_pool.push(thread_bits[rand(thread_bits.length)])
             end
         end
         puts "Preparing to Reap on #{branch} branch."
