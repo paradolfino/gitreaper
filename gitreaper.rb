@@ -71,12 +71,14 @@ class GitReaper
         pn = Pathname.new('threader.rb')
         thread_pool = []
         thread_fork = [0,1]
+        thread_bits = []
         if pn.exist?
+            thread_bits = Threader.bits
             thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
             thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
             thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
         else
-
+            thread_bits = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
         end
         
         6.times do
