@@ -12,7 +12,7 @@
 =end
 
 $LOAD_PATH << '.'
-
+require 'pathname'
 require 'threader'
 
 class GitReaper
@@ -68,18 +68,25 @@ class GitReaper
     end
 
     def self.threader(branch)
-        
+        pn = Pathname.new('threader.rb')
         thread_pool = []
         thread_fork = [0,1]
-        thread_pool.push(Threader.bits_adjs[rand(4)] + "-")
-        thread_pool.push(Threader.bits_verbs[rand(4)] + "-")
-        thread_pool.push(Threader.bits_nouns[rand(4)] + "-")
+        thread_bits = []
+        if pn.exist?
+            thread_bits = Threader.bits
+            thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
+            thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
+            thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
+        else
+            thread_bits = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+        end
+        
         6.times do
             do_fork = thread_fork[rand(thread_fork.length)]
             if do_fork == 0
                 thread_pool.push(rand(9))
             else
-                thread_pool.push(Threader.bits[rand(Threader.bits.length)])
+                thread_pool.push(thread_bits[rand(thread_bits.length)])
             end
         end
         puts "Preparing to Reap on #{branch} branch."
@@ -95,7 +102,7 @@ class GitReaper
         puts "Summarize changes made:"
         final_commit = gets.chomp
         GitReaper.atomic(final_commit, thread_pool.join(''))
-        puts "Reaping #{@@commits-1} to pool on branch: #{branch}"
+        puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
         GitReaper.execute "git push -u origin #{branch}"
         
     end
