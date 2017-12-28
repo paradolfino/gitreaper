@@ -68,12 +68,17 @@ class GitReaper
     end
 
     def self.threader(branch)
-        
+        pn = Pathname.new("./threader.rb")
         thread_pool = []
         thread_fork = [0,1]
-        thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
-        thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
-        thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
+        if pn.exist?
+            thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
+            thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
+            thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
+        else
+
+        end
+        
         6.times do
             do_fork = thread_fork[rand(thread_fork.length)]
             if do_fork == 0
