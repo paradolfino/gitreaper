@@ -77,7 +77,7 @@ class GitReaper
             GitReaper.execute "git push -u origin #{branch}"
         when "kill"
             puts "wiping commits and exiting"
-            system "git reset --soft HEAD ."
+            system "git reset HEAD~"
         else
 
         end
