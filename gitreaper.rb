@@ -69,15 +69,15 @@ class GitReaper
 
     def self.exit(exit_type)
         case exit_type
-        when ""
+        when "push"
             puts "Summarize changes made:"
             final_commit = gets.chomp
             GitReaper.atomic(final_commit, thread_pool.join(''))
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
-        when "exit"
+        when "kill"
             puts "wiping commits and exiting"
-            system "git reset --soft HEAD~"
+            system "git reset --soft HEAD *"
         else
 
         end
@@ -119,7 +119,7 @@ class GitReaper
         puts "How do you wish to exit?"
         puts "'push': pushes all commits to branch, or 'kill': wipes commits and exits program"
         exit_type = gets.chomp
-        Gitreaper.exit(exit_type)
+        GitReaper.exit(exit_type)
         
         
     end
