@@ -116,10 +116,10 @@ class GitReaper
     def self.menu
         loop do
             puts " 
-            Welcome to GitReaper
-            What do you need?
-            Here are the available commands:
-            run | singlemode | multimode "
+        Welcome to GitReaper
+        What do you need?
+        Here are the available commands:
+        run | singlemode | multimode "
             input = gets.chomp
             case input
             when "run"
