@@ -54,13 +54,9 @@ class GitReaper
         sleep 1
     end
 
-    def self.commit_loop(pool, is_test)
+    def self.commit_loop(pool)
             GitReaper.add_wait
-            if is_test != true
-                GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
-            else
-                puts "git commit -m \" commit ## to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
-            end
+            GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
     def self.atomic(why, pool)
@@ -69,6 +65,22 @@ class GitReaper
         end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
+    end
+
+    def self.exit(exit_type, pool, branch)
+        case exit_type
+        when "push"
+            puts "Summarize changes made:"
+            final_commit = gets.chomp
+            GitReaper.atomic(final_commit, pool)
+            puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
+            GitReaper.execute "git push -u origin #{branch}"
+        when "kill"
+            puts "wiping commits and exiting"
+            system "git reset HEAD~"
+        else
+
+        end
     end
 
     def self.threader(branch)
@@ -97,22 +109,18 @@ class GitReaper
         reaper = Thread.new do
             
             while true
-                if branch != "GRTEST"
-                    GitReaper.commit_loop(thread_pool.join(''),nil)
-                else
-                    GitReaper.commit_loop(thread_pool.join(''),true)
-                end
+                GitReaper.commit_loop(thread_pool.join(''))
             end
             
         end
         
         gets
         reaper.kill
-        puts "Summarize changes made:"
-        final_commit = gets.chomp
-        GitReaper.atomic(final_commit, thread_pool.join(''))
-        puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
-        GitReaper.execute "git push -u origin #{branch}"
+        puts "How do you wish to exit?"
+        puts "'push': pushes all commits to branch, or 'kill': wipes commits and exits program"
+        exit_type = gets.chomp
+        GitReaper.exit(exit_type, thread_pool.join(''), branch)
+        
         
     end
 
@@ -122,33 +130,8 @@ class GitReaper
         GitReaper.threader(branch)
     end
 
-    def self.test
-        puts "Entering test mode!"
-        GitReaper.threader("GRTEST")
-    end
-
-
-    def self.menu
-        loop do
-            puts " 
-        Welcome to GitReaper
-        What do you need?
-        Here are the available commands:
-        run | test "
-            input = gets.chomp
-            case input
-            when "run"
-                GitReaper.start
-                break
-            when "test"
-                GitReaper.test
-            end
-
-        end
-        
-            
-    end
+    
 
 end
 
-GitReaper.menu
+GitReaper.start
