@@ -67,7 +67,7 @@ class GitReaper
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
-    def self.threader(branch)
+    def self.threader(branch,param)
         pn = Pathname.new('threader.rb')
         thread_pool = []
         thread_fork = [0,1]
@@ -107,21 +107,35 @@ class GitReaper
         
     end
 
-    def self.start
+    def self.start(param)
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
     end
 
     def self.menu
-        puts " 
+        loop do
+            puts " 
             Welcome to GitReaper
             What do you need?
             Here are the available commands:
             run | singlemode | multimode "
-            loop do
-
+            input = gets.chomp
+            case input
+            when "run"
+                GitReaper.start("singlemode")
+                break
+            when "singlemode"
+                GitReaper.start("singlemode")
+                break
+            when "multimode"
+                GitReaper.start("singlemode")
+                break
             end
+
+        end
+        
+            
     end
 
 end
