@@ -17,3 +17,4 @@
 26/12/2017 21:26:pool[serene-living-cow-p66pwf]: finish threader.rb module for extending pool naming possibilities
 27/12/2017 21:34:pool[lovely-running-cabins-v40dg1]: add default thread_bits in case user does not wish to download threader.rb
 28/12/2017 21:19:pool[rapid-rolling-cabins-43518p]: work on options
+28/12/2017 21:31:pool[serene-running-rivers-366m5s]: begin work on test mode
