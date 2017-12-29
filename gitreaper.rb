@@ -115,9 +115,9 @@ class GitReaper
 
     def self.menu
         puts " Welcome to GitReaper
-                What do you need?
-                    Here are the available commands:
-                        run | singlemode | multimode "
+            What do you need?
+            Here are the available commands:
+            run | singlemode | multimode "
     end
 
 end
