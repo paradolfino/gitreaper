@@ -114,7 +114,11 @@ class GitReaper
         GitReaper.threader(branch)
     end
 
-    def
+    def self.test
+        puts "Entering test mode!"
+        GitReaper.threader("GRTEST")
+    end
+
 
     def self.menu
         loop do
@@ -126,10 +130,10 @@ class GitReaper
             input = gets.chomp
             case input
             when "run"
-                GitReaper.start("singlemode")
+                GitReaper.start
                 break
             when "test"
-                GitReaper.start("test")
+                GitReaper.test
             end
 
         end
