@@ -97,11 +97,7 @@ class GitReaper
         reaper = Thread.new do
             
             while true
-                if branch != "GRTEST"
-                    GitReaper.commit_loop(thread_pool.join(''),nil)
-                else
-                    GitReaper.commit_loop(thread_pool.join(''),true)
-                end
+                GitReaper.commit_loop(thread_pool.join(''))
             end
             
         end
