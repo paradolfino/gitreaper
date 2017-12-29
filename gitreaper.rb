@@ -54,9 +54,13 @@ class GitReaper
         sleep 1
     end
 
-    def self.commit_loop(pool)
+    def self.commit_loop(pool, is_test)
             GitReaper.add_wait
-            GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            if is_test != true
+                GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            else
+                puts "git commit -m \" commit ## to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            end
     end
 
     def self.atomic(why, pool)
@@ -67,7 +71,7 @@ class GitReaper
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
-    def self.threader(branch,param)
+    def self.threader(branch)
         pn = Pathname.new('threader.rb')
         thread_pool = []
         thread_fork = [0,1]
@@ -93,7 +97,11 @@ class GitReaper
         reaper = Thread.new do
             
             while true
-                GitReaper.commit_loop(thread_pool.join(''))
+                if branch != "GRTEST"
+                    GitReaper.commit_loop(thread_pool.join(''),nil)
+                else
+                    GitReaper.commit_loop(thread_pool.join(''),true)
+                end
             end
             
         end
@@ -108,11 +116,17 @@ class GitReaper
         
     end
 
-    def self.start(param)
+    def self.start
         puts "Branch to push?"
         branch = gets.chomp
-        GitReaper.threader(branch, param)
+        GitReaper.threader(branch)
     end
+
+    def self.test
+        puts "Entering test mode!"
+        GitReaper.threader("GRTEST")
+    end
+
 
     def self.menu
         loop do
@@ -120,18 +134,14 @@ class GitReaper
         Welcome to GitReaper
         What do you need?
         Here are the available commands:
-        run | singlemode | multimode "
+        run | test "
             input = gets.chomp
             case input
             when "run"
-                GitReaper.start("singlemode")
+                GitReaper.start
                 break
-            when "singlemode"
-                GitReaper.start("singlemode")
-                break
-            when "multimode"
-                GitReaper.start("multimode")
-                break
+            when "test"
+                GitReaper.test
             end
 
         end
