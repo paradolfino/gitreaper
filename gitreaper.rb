@@ -54,13 +54,9 @@ class GitReaper
         sleep 1
     end
 
-    def self.commit_loop(pool, is_test)
+    def self.commit_loop(pool)
             GitReaper.add_wait
-            if is_test != true
-                GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
-            else
-                puts "git commit -m \" commit ## to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
-            end
+            GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
     def self.atomic(why, pool)
