@@ -54,9 +54,13 @@ class GitReaper
         sleep 1
     end
 
-    def self.commit_loop(pool)
+    def self.commit_loop(pool, is_test)
             GitReaper.add_wait
-            GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            if is_test
+                GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            else
+                puts "git commit -m \" commit ## to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            end
     end
 
     def self.atomic(why, pool)
@@ -93,7 +97,11 @@ class GitReaper
         reaper = Thread.new do
             
             while true
-                branch == "GRTEST" ? puts "git commit -m \" commit ## to pool[#{thread_pool.join('')}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \"" : GitReaper.commit_loop(thread_pool.join(''))
+                if branch != "GRTEST"
+                    GitReaper.commit_loop(thread_pool.join(''),nil)
+                else
+                    GitReaper.commit_loop(thread_pool.join(''),true)
+                end
             end
             
         end
@@ -102,9 +110,9 @@ class GitReaper
         reaper.kill
         puts "Summarize changes made:"
         final_commit = gets.chomp
-        branch == "GRTEST" ? puts "git commit -m \"pool[#{pool}]: #{why}\"" ? GitReaper.atomic(final_commit, thread_pool.join(''))
+        GitReaper.atomic(final_commit, thread_pool.join(''))
         puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
-        branch == "GRTEST" ? puts "git push -u origin GRTEST" : GitReaper.execute "git push -u origin #{branch}"
+        GitReaper.execute "git push -u origin #{branch}"
         
     end
 
@@ -126,7 +134,7 @@ class GitReaper
         Welcome to GitReaper
         What do you need?
         Here are the available commands:
-        run | singlemode | multimode "
+        run | test "
             input = gets.chomp
             case input
             when "run"
