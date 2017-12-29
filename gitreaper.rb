@@ -110,7 +110,7 @@ class GitReaper
     def self.start(param)
         puts "Branch to push?"
         branch = gets.chomp
-        GitReaper.threader(branch)
+        GitReaper.threader(branch,param)
     end
 
     def self.menu
