@@ -104,7 +104,7 @@ class GitReaper
         final_commit = gets.chomp
         GitReaper.atomic(final_commit, thread_pool.join(''))
         puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
-        GitReaper.execute "git push -u origin #{branch}"
+        branch == "GRTEST" ? puts "git push -u origin GRTEST" : GitReaper.execute "git push -u origin #{branch}"
         
     end
 
