@@ -102,7 +102,7 @@ class GitReaper
         reaper.kill
         puts "Summarize changes made:"
         final_commit = gets.chomp
-        GitReaper.atomic(final_commit, thread_pool.join(''))
+        branch == "GRTEST" ? puts "git commit -m \"pool[#{pool}]: #{why}\"" ? GitReaper.atomic(final_commit, thread_pool.join(''))
         puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
         branch == "GRTEST" ? puts "git push -u origin GRTEST" : GitReaper.execute "git push -u origin #{branch}"
         
