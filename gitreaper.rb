@@ -77,7 +77,8 @@ class GitReaper
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
         when "exit"
-            
+            puts "wiping commits and exiting"
+            system "git reset --soft HEAD~"
         else
 
         end
@@ -114,7 +115,9 @@ class GitReaper
             
         end
         
+        gets
         puts "How do you wish to exit?"
+        puts "'push': pushes all commits to branch, or 'kill': wipes commits and exits program"
         Gitreaper.exit(gets.chomp)
         
         
