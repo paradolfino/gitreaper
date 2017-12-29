@@ -56,7 +56,7 @@ class GitReaper
 
     def self.commit_loop(pool, is_test)
             GitReaper.add_wait
-            if is_test != nil
+            if is_test != true
                 GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
             else
                 puts "git commit -m \" commit ## to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
