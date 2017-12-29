@@ -90,12 +90,23 @@ class GitReaper
             end
         end
         puts "Preparing to Reap on #{branch} branch."
-        reaper = Thread.new do
-            while true
-                GitReaper.commit_loop(thread_pool.join(''))
+        if param == "multimode"
+            reaper = Thread.new do
+                
+                while true
+                    GitReaper.commit_loop(thread_pool.join(''))
+                end
+                
             end
+        else
+            reaper = Thread.new do
             
-        end
+                while true
+                    GitReaper.commit_loop(thread_pool.join(''))
+                end
+                
+            end
+        end    
         
         gets
         reaper.kill
