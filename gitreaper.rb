@@ -68,7 +68,6 @@ class GitReaper
     end
 
     def self.exit(exit_type)
-        reaper.kill
         case exit_type
         when ""
             puts "Summarize changes made:"
