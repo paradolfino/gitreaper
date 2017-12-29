@@ -129,7 +129,7 @@ class GitReaper
                 GitReaper.start("singlemode")
                 break
             when "multimode"
-                GitReaper.start("singlemode")
+                GitReaper.start("multimode")
                 break
             end
 
