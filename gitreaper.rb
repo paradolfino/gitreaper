@@ -67,6 +67,22 @@ class GitReaper
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
+    def self.exit(exit_type)
+        reaper.kill
+        case exit_type
+        when ""
+            puts "Summarize changes made:"
+            final_commit = gets.chomp
+            GitReaper.atomic(final_commit, thread_pool.join(''))
+            puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
+            GitReaper.execute "git push -u origin #{branch}"
+        when "exit"
+            
+        else
+
+        end
+    end
+
     def self.threader(branch)
         pn = Pathname.new('threader.rb')
         thread_pool = []
@@ -98,13 +114,9 @@ class GitReaper
             
         end
         
-        gets
-        reaper.kill
-        puts "Summarize changes made:"
-        final_commit = gets.chomp
-        GitReaper.atomic(final_commit, thread_pool.join(''))
-        puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
-        GitReaper.execute "git push -u origin #{branch}"
+        puts "How do you wish to exit?"
+        Gitreaper.exit(gets.chomp)
+        
         
     end
 
@@ -114,10 +126,7 @@ class GitReaper
         GitReaper.threader(branch)
     end
 
-    def self.test
-        puts "Entering test mode!"
-        GitReaper.threader("GRTEST")
-    end
+    
 
 end
 
