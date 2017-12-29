@@ -119,6 +119,9 @@ class GitReaper
             What do you need?
             Here are the available commands:
             run | singlemode | multimode "
+            loop do
+
+            end
     end
 
 end
