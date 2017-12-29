@@ -130,4 +130,4 @@ class GitReaper
 
 end
 
-GitReaper.start
+GitReaper.menu
