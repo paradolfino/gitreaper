@@ -93,7 +93,7 @@ class GitReaper
         reaper = Thread.new do
             
             while true
-                GitReaper.commit_loop(thread_pool.join(''))
+                branch == "GRTEST" ? puts "git commit -m \" commit ## to pool[#{thread_pool.join('')}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \"" : GitReaper.commit_loop(thread_pool.join(''))
             end
             
         end
