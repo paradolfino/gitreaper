@@ -67,12 +67,12 @@ class GitReaper
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
-    def self.exit(exit_type)
+    def self.exit(exit_type, pool)
         case exit_type
         when "push"
             puts "Summarize changes made:"
             final_commit = gets.chomp
-            GitReaper.atomic(final_commit, thread_pool.join(''))
+            GitReaper.atomic(final_commit, pool)
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
         when "kill"
@@ -119,7 +119,7 @@ class GitReaper
         puts "How do you wish to exit?"
         puts "'push': pushes all commits to branch, or 'kill': wipes commits and exits program"
         exit_type = gets.chomp
-        GitReaper.exit(exit_type)
+        GitReaper.exit(exit_type, thread_pool.join(''))
         
         
     end
