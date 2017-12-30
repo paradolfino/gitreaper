@@ -23,3 +23,4 @@
 28/12/2017 22:01:pool[serene-living-rivers-31a0o0]: scrap test mode, try exit options instead
 28/12/2017 22:08:pool[peaceful-jumping-rivers-01g550]: add 'push' which pushes all commits and 'kill' which wipes commits/terms program as commands after input from user
 28/12/2017 22:10:pool[serene-running-hills-b0b3w2]: add 'push' pushes commits/'kill' wipes commits and terms program
+29/12/2017 21:37:pool[serene-living-mountains-78qw0t]: add reap command and fix some exit method output text
