@@ -76,10 +76,11 @@ class GitReaper
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
         when "kill"
-            puts "wiping commits and exiting"
+            puts "Wiping commits and exiting"
             system "git reset HEAD~"
-        else
-
+        when "reap"
+            puts "Returning to loop"
+            GitReaper.threader(branch)
         end
     end
 
