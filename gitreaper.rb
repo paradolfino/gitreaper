@@ -76,10 +76,14 @@ class GitReaper
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
         when "kill"
-            puts "wiping commits and exiting"
+            puts "Wiping commits and exiting"
             system "git reset HEAD~"
+        when "reap"
+            puts "Returning to loop"
+            GitReaper.threader(branch)
         else
-
+            puts "Returning to loop"
+            GitReaper.threader(branch)
         end
     end
 
@@ -117,7 +121,7 @@ class GitReaper
         gets
         reaper.kill
         puts "How do you wish to exit?"
-        puts "'push': pushes all commits to branch, or 'kill': wipes commits and exits program"
+        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': returns you to the reap loop"
         exit_type = gets.chomp
         GitReaper.exit(exit_type, thread_pool.join(''), branch)
         
