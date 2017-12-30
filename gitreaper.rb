@@ -81,6 +81,9 @@ class GitReaper
         when "reap"
             puts "Returning to loop"
             GitReaper.threader(branch)
+        else
+            puts "Returning to loop"
+            GitReaper.threader(branch)
         end
     end
 
