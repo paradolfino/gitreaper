@@ -25,3 +25,4 @@
 28/12/2017 22:10:pool[serene-running-hills-b0b3w2]: add 'push' pushes commits/'kill' wipes commits and terms program
 29/12/2017 21:37:pool[serene-living-mountains-78qw0t]: add reap command and fix some exit method output text
 29/12/2017 21:40:pool[serene-jumping-cows-5268ac]: test exit method and add else case that puts user back into reap loop
+30/12/2017 19:30:pool[pretty-living-rivers-x314z6]: minor change long thread_bits array to ("a".."z")
