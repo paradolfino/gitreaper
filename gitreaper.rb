@@ -98,7 +98,7 @@ class GitReaper
             thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
             thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
         else
-            thread_bits = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+            thread_bits = ("a".."z").to_a
         end
         
         6.times do
