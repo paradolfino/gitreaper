@@ -44,7 +44,7 @@ def exit(exit_type, pool, branch)
         puts "Summarize changes made:"
         final_commit = gets.chomp
         atomic(final_commit, pool)
-        puts "Reaping #{$commits-1} commits to pool on branch: #{branch}"
+        puts "Reaping commits to pool on branch: #{branch}"
         execute "git push -u origin #{branch}"
     when "kill"
         puts "Wiping commits and exiting"
