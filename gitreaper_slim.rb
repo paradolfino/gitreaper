@@ -59,19 +59,10 @@ def exit(exit_type, pool, branch)
 end
 
 def threader(branch)
-    include Threader
-    pn = Pathname.new('threader.rb')
     thread_pool = []
     thread_fork = [0,1]
     thread_bits = []
-    if pn.exist?
-        thread_bits = Threader.bits
-        thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
-        thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
-        thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
-    else
-        thread_bits = ("a".."z").to_a
-    end
+    thread_bits = ("a".."z").to_a
     
     6.times do
         
