@@ -1,11 +1,8 @@
-GitReaper is a helper script written in Ruby that is run in an existing terminal.
+# Velkommen til GitReaper
+GitReaper is a helper script written in Ruby that is run in an existing terminal. It automates my interactions with Git, such as: adding, committing, and pushing to specified branches.
 
-I basically made it because I wanted something to automate my git interactions without being a mess to set up. It actually doesn't interact with the git api at all and just executes CLI commands.
+Instead of sparsely committing changes, I can keep track of second-by-second snapshots of changes to files watched by Git. Those changes are wrapped up into a single pool that I can summarize what changes were made. All pools are given IDs/names for reference/inspection on GitHub.
 
-It will run on a loop: every second adding and committing to git.
 
-This tool probably doesn't follow best practices when it comes to commit messages. That's why I made it create a log of commits in why_commit.txt as well as ask for a final commit message that describes what changes were made.
-
-Atomic commits outside of the final_commit are commits to a pool. The pool is a reference name for the "pool" of commits before a push.
 
 -Viktharien
