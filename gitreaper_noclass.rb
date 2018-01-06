@@ -27,7 +27,7 @@ class GitReaper
         
     end
 
-    def self.execute(param)
+    def execute(param)
         stalker = %x{#{param}}
         @@time_running += 1
         if stalker.include? "nothing to commit" 
@@ -39,18 +39,18 @@ class GitReaper
         end
     end
 
-    def self.add_wait
+    def add_wait
         sleep 1
         GitReaper.execute "git add ."
         sleep 1
     end
 
-    def self.commit_loop(pool)
+    def commit_loop(pool)
             GitReaper.add_wait
             GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
-    def self.atomic(why, pool)
+    def atomic(why, pool)
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
@@ -58,7 +58,7 @@ class GitReaper
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
-    def self.exit(exit_type, pool, branch)
+    def exit(exit_type, pool, branch)
         case exit_type
         when "push"
             puts "Summarize changes made:"
@@ -78,7 +78,7 @@ class GitReaper
         end
     end
 
-    def self.threader(branch)
+    def threader(branch)
         pn = Pathname.new('threader.rb')
         thread_pool = []
         thread_fork = [0,1]
@@ -119,7 +119,7 @@ class GitReaper
         
     end
 
-    def self.start
+    def start
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
