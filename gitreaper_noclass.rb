@@ -23,8 +23,9 @@ $commits = 1
 $time_running = 0
 
 def execute(param)
+    p "execute"
     stalker = %x{#{param}}
-    time_running += 1
+    $time_running += 1
     if stalker.include? "nothing to commit" 
         puts $color_red + "Stalking for #{$time_running} secs" + $color_default
     elsif stalker.include? "insert"
@@ -35,6 +36,7 @@ def execute(param)
 end
 
 def add_wait
+    p "add_wait"
     sleep 1
     execute "git add ."
     sleep 1
@@ -89,6 +91,7 @@ def threader(branch)
     end
     
     6.times do
+        p "test"
         do_fork = thread_fork[rand(thread_fork.length)]
         if do_fork == 0
             thread_pool.push(rand(9))
