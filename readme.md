@@ -8,6 +8,7 @@ In addition, at the end of a pool of commits, the summary of changes is written 
 
 ## Threader
 
+Threader, or "threader.rb", is a set of customizable methods that are used in GitReaper to generate unique IDs for commit pools. If you don't download threader.rb, GitReaper will still generate unique IDs, but will just use 6 alpha-numeric characters randomly chosen.
 
 ## GitReaper_NoClass
 
