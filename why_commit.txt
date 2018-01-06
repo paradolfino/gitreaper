@@ -28,3 +28,4 @@
 30/12/2017 19:30:pool[pretty-living-rivers-x314z6]: minor change long thread_bits array to ("a".."z")
 30/12/2017 20:53:pool[pretty-rolling-cows-85a0zh]: test
 05/01/2018 21:34:pool[brilliant-rolling-rivers-3t6037]: remove class, remove "self", remove "GitReaper", remove "@@" refs - move on to testing
+05/01/2018 21:38:pool[rapid-rolling-horses-xv2656]: test fail, remove initialize, move to testing
