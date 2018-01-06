@@ -15,7 +15,7 @@ $LOAD_PATH << '.'
 require 'pathname'
 require 'threader'
 
-include Threader
+
 color_red = "\033[31m"
 color_green = "\033[32m"
 color_default = "\033[0m"
@@ -74,6 +74,7 @@ def exit(exit_type, pool, branch)
 end
 
 def threader(branch)
+    include Threader
     pn = Pathname.new('threader.rb')
     thread_pool = []
     thread_fork = [0,1]
