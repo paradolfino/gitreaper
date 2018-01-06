@@ -31,3 +31,4 @@
 05/01/2018 21:38:pool[rapid-rolling-horses-xv2656]: test fail, remove initialize, move to testing
 05/01/2018 21:40:pool[happy-shining-mountains-sa862n]: testing fail, move include Threader to threader method -- testing
 05/01/2018 21:43:pool[rapid-flying-rivers-6dshcu]: testing fail, change variable scope to global
+05/01/2018 21:47:pool[happy-living-hills-at753v]: testing success, add testing strings in each method to check if working
