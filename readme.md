@@ -8,6 +8,8 @@ In addition, at the end of a pool of commits, the summary of changes is written 
 
 ## GitReaper_NoClass
 
+The original GitReaper, called "core" and just named "gitreaper.rb" is a class that uses internal methods and class variables.  
+"gitreaper_noclass" is the same functionality, just with no explicit GitReaper class - and it looks more like a script this way.
 
 
 
