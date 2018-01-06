@@ -6,6 +6,9 @@ Instead of sparsely committing changes, I can keep track of second-by-second sna
 
 In addition, at the end of a pool of commits, the summary of changes is written into a log file called "why_commit" which lists all changes, ordered by date, since I started using GitReaper inside the specific project directory.
 
+## Threader
+
+
 ## GitReaper_NoClass
 
 The original GitReaper, called "core" and just named "gitreaper.rb" is a class that uses internal methods and class variables.  
