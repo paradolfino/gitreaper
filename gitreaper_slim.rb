@@ -98,8 +98,4 @@ def start
     threader(branch)
 end
 
-    
-
-
-
 start
