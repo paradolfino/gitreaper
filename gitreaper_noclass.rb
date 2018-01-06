@@ -22,10 +22,6 @@ color_default = "\033[0m"
 commits = 1
 time_running = 0
 
-def initialize
-    
-end
-
 def execute(param)
     stalker = %x{#{param}}
     time_running += 1
