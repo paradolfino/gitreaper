@@ -41,21 +41,21 @@ class GitReaper
 
     def add_wait
         sleep 1
-        GitReaper.execute "git add ."
+        execute "git add ."
         sleep 1
     end
 
     def commit_loop(pool)
-            GitReaper.add_wait
-            GitReaper.execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+            add_wait
+            execute "git commit -m \" commit #{@@commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
     end
 
     def atomic(why, pool)
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
-        GitReaper.add_wait
-        GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
+        add_wait
+        execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
 
     def exit(exit_type, pool, branch)
@@ -63,18 +63,18 @@ class GitReaper
         when "push"
             puts "Summarize changes made:"
             final_commit = gets.chomp
-            GitReaper.atomic(final_commit, pool)
+            atomic(final_commit, pool)
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
-            GitReaper.execute "git push -u origin #{branch}"
+            execute "git push -u origin #{branch}"
         when "kill"
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "reap"
             puts "Returning to loop"
-            GitReaper.threader(branch)
+            threader(branch)
         else
             puts "Returning to loop"
-            GitReaper.threader(branch)
+            threader(branch)
         end
     end
 
@@ -104,7 +104,7 @@ class GitReaper
         reaper = Thread.new do
             
             while true
-                GitReaper.commit_loop(thread_pool.join(''))
+                commit_loop(thread_pool.join(''))
             end
             
         end
@@ -114,7 +114,7 @@ class GitReaper
         puts "How do you wish to exit?"
         puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': returns you to the reap loop"
         exit_type = gets.chomp
-        GitReaper.exit(exit_type, thread_pool.join(''), branch)
+        exit(exit_type, thread_pool.join(''), branch)
         
         
     end
@@ -122,11 +122,11 @@ class GitReaper
     def start
         puts "Branch to push?"
         branch = gets.chomp
-        GitReaper.threader(branch)
+        threader(branch)
     end
 
     
 
 end
 
-GitReaper.start
+start
