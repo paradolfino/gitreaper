@@ -16,11 +16,11 @@ require 'pathname'
 require 'threader'
 
 
-color_red = "\033[31m"
-color_green = "\033[32m"
-color_default = "\033[0m"
-commits = 1
-time_running = 0
+$color_red = "\033[31m"
+$color_green = "\033[32m"
+$color_default = "\033[0m"
+$commits = 1
+$time_running = 0
 
 def execute(param)
     stalker = %x{#{param}}
