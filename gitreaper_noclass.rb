@@ -26,11 +26,11 @@ def execute(param)
     stalker = %x{#{param}}
     time_running += 1
     if stalker.include? "nothing to commit" 
-        puts color_red + "Stalking for #{time_running} secs" + color_default
+        puts $color_red + "Stalking for #{$time_running} secs" + $color_default
     elsif stalker.include? "insert"
-        puts color_green + stalker + color_default
-        puts "#{commits} commits to pool so far"
-        commits += 1
+        puts $color_green + stalker + $color_default
+        puts "#{$commits} commits to pool so far"
+        $commits += 1
     end
 end
 
@@ -42,7 +42,7 @@ end
 
 def commit_loop(pool)
         add_wait
-        execute "git commit -m \" commit #{commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+        execute "git commit -m \" commit #{$commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
 end
 
 def atomic(why, pool)
@@ -59,7 +59,7 @@ def exit(exit_type, pool, branch)
         puts "Summarize changes made:"
         final_commit = gets.chomp
         atomic(final_commit, pool)
-        puts "Reaping #{commits-1} commits to pool on branch: #{branch}"
+        puts "Reaping #{$commits-1} commits to pool on branch: #{branch}"
         execute "git push -u origin #{branch}"
     when "kill"
         puts "Wiping commits and exiting"
