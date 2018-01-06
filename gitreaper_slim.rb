@@ -18,7 +18,6 @@ def execute(param)
 end
 
 def add_wait
-    
     sleep 1
     execute "git add ."
     sleep 1
