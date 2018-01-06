@@ -11,6 +11,7 @@ def execute(param)
     
     stalker = %x{#{param}}
     if stalker.include? "nothing to commit" 
+        system "clear"
         puts "Stalking"
     elsif stalker.include? "insert"
         puts stalker
