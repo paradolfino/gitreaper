@@ -26,7 +26,7 @@ end
 def commit_loop(pool)
     
     add_wait
-    execute "git commit -m \" commit #{$commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+    execute "git commit -m \" commit to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
 end
 
 def atomic(why, pool)
