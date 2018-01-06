@@ -1,11 +1,20 @@
-GitReaper is a helper script written in Ruby that is run in an existing terminal.
+# Velkommen til GitReaper
 
-I basically made it because I wanted something to automate my git interactions without being a mess to set up. It actually doesn't interact with the git api at all and just executes CLI commands.
+GitReaper is a helper script written in Ruby that is run in an existing terminal. It automates my interactions with Git, such as: adding, committing, and pushing to specified branches.
 
-It will run on a loop: every second adding and committing to git.
+Instead of sparsely committing changes, I can keep track of second-by-second snapshots of changes to files watched by Git. Those changes are wrapped up into a single __pool__ that I can summarize what changes were made. All pools are given IDs/names for reference/inspection on GitHub.
 
-This tool probably doesn't follow best practices when it comes to commit messages. That's why I made it create a log of commits in why_commit.txt as well as ask for a final commit message that describes what changes were made.
+In addition, at the end of a pool of commits, the summary of changes is written into a log file called "why_commit" which lists all changes, ordered by date, since I started using GitReaper inside the specific project directory.
 
-Atomic commits outside of the final_commit are commits to a pool. The pool is a reference name for the "pool" of commits before a push.
+## Threader
+
+Threader, or "threader.rb", is a set of customizable methods that are used in GitReaper to generate unique IDs for commit pools. If you don't download threader.rb, GitReaper will still generate unique IDs, but will just use 6 alpha-numeric characters randomly chosen.
+
+## GitReaper_NoClass
+
+The original GitReaper, called "core" and just named "gitreaper.rb" is a class that uses internal methods and class variables.  
+"gitreaper_noclass" is the same functionality, just with no explicit GitReaper class - and it looks more like a script this way.
+
+
 
 -Viktharien
