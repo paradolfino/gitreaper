@@ -43,11 +43,13 @@ def add_wait
 end
 
 def commit_loop(pool)
-        add_wait
-        execute "git commit -m \" commit #{$commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
+    p "commit_loop"
+    add_wait
+    execute "git commit -m \" commit #{$commits} to pool[#{pool}] at #{Time.now.strftime("%H:%M - %d/%m/%Y")} \""
 end
 
 def atomic(why, pool)
+    p "atomic commit"
     open('why_commit.txt', 'a') do |file|
         file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
     end
