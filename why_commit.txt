@@ -26,3 +26,10 @@
 29/12/2017 21:37:pool[serene-living-mountains-78qw0t]: add reap command and fix some exit method output text
 29/12/2017 21:40:pool[serene-jumping-cows-5268ac]: test exit method and add else case that puts user back into reap loop
 30/12/2017 19:30:pool[pretty-living-rivers-x314z6]: minor change long thread_bits array to ("a".."z")
+30/12/2017 20:53:pool[pretty-rolling-cows-85a0zh]: test
+05/01/2018 21:34:pool[brilliant-rolling-rivers-3t6037]: remove class, remove "self", remove "GitReaper", remove "@@" refs - move on to testing
+05/01/2018 21:38:pool[rapid-rolling-horses-xv2656]: test fail, remove initialize, move to testing
+05/01/2018 21:40:pool[happy-shining-mountains-sa862n]: testing fail, move include Threader to threader method -- testing
+05/01/2018 21:43:pool[rapid-flying-rivers-6dshcu]: testing fail, change variable scope to global
+05/01/2018 21:47:pool[happy-living-hills-at753v]: testing success, add testing strings in each method to check if working
+05/01/2018 21:49:pool[serene-living-cows-6d8qtz]: remove all test outputs
