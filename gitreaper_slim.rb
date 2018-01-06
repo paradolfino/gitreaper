@@ -10,7 +10,6 @@
 def execute(param)
     
     stalker = %x{#{param}}
-    $time_running += 1
     if stalker.include? "nothing to commit" 
         puts $color_red + "Stalking for #{$time_running} secs" + $color_default
     elsif stalker.include? "insert"
