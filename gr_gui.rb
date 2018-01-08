@@ -7,6 +7,6 @@ Shoes.app do
         }
         @test.click {
             reaper = %x{"ls"}
-            alert reaper
+            alert(reaper)
         }
 end
