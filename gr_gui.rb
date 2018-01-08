@@ -6,7 +6,7 @@ Shoes.app do
           button "A gulp of swallows"
         }
         @test.click {
-            reaper = %x{"ls"}
+            reaper = %x{ls}
             alert(reaper)
         }
 end
