@@ -6,6 +6,6 @@ Shoes.app do
         }
         @test.click {
             reaper = %x{ls}
-            @out.replace "Test"
+            @out.replace "Test22"
         }
 end
