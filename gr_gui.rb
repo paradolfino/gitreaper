@@ -1,5 +1,8 @@
 Shoes.app do
-    button "Test"
-    button "Test"
-    button "Test"
+    stack {
+        button "Test"
+        button "Test"
+        button "Test"
+    }
+    
 end
