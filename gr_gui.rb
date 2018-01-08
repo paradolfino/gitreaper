@@ -5,4 +5,8 @@ Shoes.app do
           button "A coalition of cheetahs"
           button "A gulp of swallows"
         }
+        @test.click {
+            reaper = %x{"ls"}
+            alert reaper
+        }
 end
