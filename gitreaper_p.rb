@@ -15,10 +15,6 @@ $LOAD_PATH << '.'
 require 'pathname'
 require 'threader'
 
-
-$color_red = "\033[31m"
-$color_green = "\033[32m"
-$color_default = "\033[0m"
 $commits = 1
 $time_running = 0
 
@@ -27,9 +23,9 @@ def execute(param)
     stalker = %x{#{param}}
     $time_running += 1
     if stalker.include? "nothing to commit" 
-        p $color_red + "Stalking for #{$time_running} secs" + $color_default
+        p "Stalking for #{$time_running} secs"
     elsif stalker.include? "insert"
-        p $color_green + stalker + $color_default
+        p stalker
         p "#{$commits} commits to pool so far"
         $commits += 1
     end
