@@ -20,7 +20,7 @@ $time_running = 0
 
 def execute(param)
     
-    stalker = %x{#{param}}
+    stalker = `#{param}`
     $time_running += 1
     if stalker.include? "nothing to commit" 
         p "Stalking for #{$time_running} secs"
