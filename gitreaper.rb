@@ -17,6 +17,7 @@ require 'threader'
 
 class GitReaper
     include Threader
+    @@pushes = 0
     @@color_red = "\033[31m"
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
@@ -63,24 +64,35 @@ class GitReaper
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
+        changes = why.strip.split(",")
+        changes.map! {|item| item = "* #{item.strip}"}
+        
+        open('pull_me.txt', 'a') do |file|
+            file.puts "### pool[#{pool}]:"
+            file.puts changes
+            file.puts
+        end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
+        
     end
 
     def self.exit(exit_type, pool, branch)
         case exit_type
         when "push"
             puts "Summarize changes made:"
-            final_commit = gets.chomp
-            GitReaper.atomic(final_commit, pool)
-            puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
-            GitReaper.execute "git push -u origin #{branch}"
+            summary = gets.chomp
+            GitReaper.atomic(summary, pool)
+            GitReaper.start
         when "kill"
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "reap"
-            puts "Returning to loop"
-            GitReaper.threader(branch)
+            puts "Summarize final changes:"
+            summary = gets.chomp
+            GitReaper.atomic(summary, pool)
+            puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
+            GitReaper.execute "git push -u origin #{branch}"
         else
             puts "Returning to loop"
             GitReaper.threader(branch)
@@ -121,7 +133,7 @@ class GitReaper
         gets
         reaper.kill
         puts "How do you wish to exit?"
-        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': returns you to the reap loop"
+        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
         GitReaper.exit(exit_type, thread_pool.join(''), branch)
         
@@ -129,6 +141,8 @@ class GitReaper
     end
 
     def self.start
+
+        @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
