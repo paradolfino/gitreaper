@@ -17,7 +17,7 @@ require 'threader'
 
 class GitReaper
     include Threader
-    @@started = 0
+    @@pushes = 0
     @@color_red = "\033[31m"
     @@color_green = "\033[32m"
     @@color_default = "\033[0m"
@@ -141,7 +141,7 @@ class GitReaper
 
     def self.start
 
-        @@pushes == 0 ? open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1; : @@pushes += 1
+        @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
