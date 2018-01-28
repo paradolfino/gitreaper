@@ -6,6 +6,6 @@ def output input
     puts "pool[test]:"
     puts changes
 end
-    input = gets.chomp
-    
-    output input
+input = gets.chomp
+  
+output input
