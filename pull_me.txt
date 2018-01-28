@@ -1,3 +1,2 @@
-### pool[test]:
-* ssadl
-* asdj
+### pool[rapid-shining-mountains-hym68r]:
+* test new feature
