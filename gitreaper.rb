@@ -134,7 +134,7 @@ class GitReaper
         gets
         reaper.kill
         puts "How do you wish to exit?"
-        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': returns you to the reap loop"
+        puts "'push': pushes all commits to branch\n'kill': wipes commits and exits program\n'reap': pushes all changes"
         exit_type = gets.chomp
         GitReaper.exit(exit_type, thread_pool.join(''), branch)
         
