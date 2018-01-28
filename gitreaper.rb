@@ -90,8 +90,6 @@ class GitReaper
             system "git reset HEAD~"
         when "reap"
             puts "Pushing..."
-            final_commit = gets.chomp
-            GitReaper.final(final_commit, pool)
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
         else
