@@ -83,7 +83,7 @@ class GitReaper
         case exit_type
         when "push"
             puts "Summarize changes made:"
-            final_commit = gets.chomp
+            summary = gets.chomp
             GitReaper.atomic(final_commit, pool)
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
@@ -91,8 +91,9 @@ class GitReaper
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "reap"
-            puts "Returning to loop"
-            GitReaper.threader(branch)
+            puts "Pushing..."
+            final_commit = gets.chomp
+            GitReaper.final(final_commit, pool)
         else
             puts "Returning to loop"
             GitReaper.threader(branch)
