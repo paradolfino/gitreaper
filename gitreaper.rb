@@ -72,6 +72,8 @@ class GitReaper
         end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
+        input = gets.chomp
+        GitReaper.exit(input)
     end
 
     def self.exit(exit_type, pool, branch)
