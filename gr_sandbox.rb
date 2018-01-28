@@ -5,8 +5,8 @@ def output input
     changes.map! {|item| item = "* #{item.strip}"}
     
     open('pull_me.txt', 'w') do |file|
-        puts "pool[test]:"
-        puts changes
+        file.puts "pool[test]:"
+        file.puts changes
     end
 end
 input = gets.chomp
