@@ -61,8 +61,6 @@ class GitReaper
     end
 
     def self.atomic(why, pool)
-        puts "You will return to the loop once changes are pushed."
-        GitReaper.start
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
@@ -85,6 +83,7 @@ class GitReaper
             puts "Summarize changes made:"
             summary = gets.chomp
             GitReaper.atomic(summary, pool)
+            GitReaper.start
         when "kill"
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
