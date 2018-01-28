@@ -3,8 +3,11 @@
 def output input
     changes = input.strip.split(",")
     changes.map! {|item| item = "* #{item.strip}"}
-    puts "pool[test]:"
-    puts changes
+    
+    open('why_commit.txt', 'w') do |file|
+        puts "pool[test]:"
+        puts changes
+    end
 end
 input = gets.chomp
   
