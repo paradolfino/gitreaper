@@ -41,3 +41,4 @@
 16/01/2018 10:28:pool[brilliant-flying-rivers-dk754t]: testing gitreaper_p
 27/01/2018 18:20:pool[rapid-shining-rivers-i40d68]: add output of a pull_me file so that I don't have to format changes for pull request descriptions
 27/01/2018 18:21:pool[rapid-shining-mountains-hym68r]: test new feature
+27/01/2018 18:24:pool[happy-jumping-cabins-jedg1f]: further testing, add return to loop after changes
