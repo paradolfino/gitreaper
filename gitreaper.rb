@@ -63,6 +63,13 @@ class GitReaper
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
+        changes = why.strip.split(",")
+        changes.map! {|item| item = "* #{item.strip}"}
+        
+        open('pull_me.txt', 'w') do |file|
+            file.puts "### pool[test]:"
+            file.puts changes
+        end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
     end
