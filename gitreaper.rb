@@ -66,7 +66,7 @@ class GitReaper
         changes = why.strip.split(",")
         changes.map! {|item| item = "* #{item.strip}"}
         
-        open('pull_me.txt', 'w') do |file|
+        open('pull_me.txt', 'a') do |file|
             file.puts "### pool[#{pool}]:"
             file.puts changes
         end
