@@ -84,7 +84,7 @@ class GitReaper
         when "push"
             puts "Summarize changes made:"
             summary = gets.chomp
-            GitReaper.atomic(final_commit, pool)
+            GitReaper.atomic(summary, pool)
         when "kill"
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
