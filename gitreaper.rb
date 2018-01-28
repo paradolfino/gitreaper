@@ -88,7 +88,9 @@ class GitReaper
             puts "Wiping commits and exiting"
             system "git reset HEAD~"
         when "reap"
-            puts "Pushing..."
+            puts "Summarize final changes:"
+            summary = gets.chomp
+            GitReaper.atomic(summary, pool)
             puts "Reaping #{@@commits-1} commits to pool on branch: #{branch}"
             GitReaper.execute "git push -u origin #{branch}"
         else
