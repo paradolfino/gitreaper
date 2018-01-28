@@ -141,7 +141,7 @@ class GitReaper
 
     def self.start
 
-        @@pushes == 0 ? open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1 : @@pushes += 1
+        @@pushes == 0 ? open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1; : @@pushes += 1
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
