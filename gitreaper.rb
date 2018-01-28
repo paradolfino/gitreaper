@@ -69,6 +69,7 @@ class GitReaper
         open('pull_me.txt', 'a') do |file|
             file.puts "### pool[#{pool}]:"
             file.puts changes
+            file.puts
         end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
