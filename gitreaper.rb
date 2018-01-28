@@ -61,6 +61,8 @@ class GitReaper
     end
 
     def self.atomic(why, pool)
+        puts "You will return to the loop once changes are pushed."
+        GitReaper.start
         open('why_commit.txt', 'a') do |file|
             file.puts "#{Time.now.strftime("%d/%m/%Y %H:%M")}:pool[#{pool}]: #{why}"
         end
@@ -74,8 +76,7 @@ class GitReaper
         end
         GitReaper.add_wait
         GitReaper.execute "git commit -m \"pool[#{pool}]: #{why}\""
-        puts "You will return to the loop once changes are pushed."
-        GitReaper.start
+        
     end
 
     def self.exit(exit_type, pool, branch)

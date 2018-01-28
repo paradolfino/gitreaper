@@ -1,7 +1,1 @@
 
-### pool[serene-baking-villages-1g5r7z]:
-* test wipe pull_me and append pull_me depending on pushes greater than 0
-
-### pool[brilliant-baking-cabins-mk2r16]:
-* test entry
-
