@@ -42,3 +42,4 @@
 27/01/2018 18:20:pool[rapid-shining-rivers-i40d68]: add output of a pull_me file so that I don't have to format changes for pull request descriptions
 27/01/2018 18:21:pool[rapid-shining-mountains-hym68r]: test new feature
 27/01/2018 18:24:pool[happy-jumping-cabins-jedg1f]: further testing, add return to loop after changes
+27/01/2018 18:35:pool[serene-baking-villages-1g5r7z]: test wipe pull_me and append pull_me depending on pushes greater than 0
