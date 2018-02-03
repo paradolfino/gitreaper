@@ -13,6 +13,7 @@
 
 #$LOAD_PATH << '.'
 #require 'pathname'
+require 'http_require'
 require 'http://www.viktharienvolander.com/threader.rb'
 
 class GitReaper
