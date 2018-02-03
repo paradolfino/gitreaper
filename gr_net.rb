@@ -1,6 +1,6 @@
 =begin
 
-    Hi there. This is GitReaper. I made it to help do some heavy lifting with git commits.
+    Hi there. This is GR_NET (GitReaper Net). I made it to help do some heavy lifting with git commits.
     You're free to use and modify your own copies of the script - but I have not tested it on multiple platforms
     and don't know of the effects thereof.
     Feel free to also send in issues to the gitreaper repo or if you modify the code to make it better, feel free
@@ -11,8 +11,6 @@
 
 =end
 
-#$LOAD_PATH << '.'
-#require 'pathname'
 require 'http_require'
 require 'http://www.viktharienvolander.com/threader.rb'
 
@@ -28,15 +26,6 @@ class GitReaper
     def initialize
         
     end
-
-=begin
-    #DEPRECATED - but may use in the future
-    def self.detect_file
-        mod = Dir.glob("#{Dir.pwd}**/*").max_by {|f| File.mtime(f)}
-        mod = mod.split('/')
-        GitReaper.commit_loop(mod)
-    end
-=end
 
     def self.execute(param)
         stalker = %x{#{param}}
@@ -68,7 +57,7 @@ class GitReaper
         changes = why.strip.split(",")
         changes.map! {|item| item = "* #{item.strip}"}
         
-        open('pull_me_test.txt', 'a') do |file|
+        open('pull_me.txt', 'a') do |file|
             file.puts "### pool[#{pool}]:"
             file.puts changes
             file.puts
@@ -101,7 +90,6 @@ class GitReaper
     end
 
     def self.threader(branch)
-       #pn = Pathname.new('threader.rb')
        thread_pool = []
        thread_fork = [0,1]
        thread_bits = []
@@ -109,16 +97,7 @@ class GitReaper
        thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
        thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
        thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
-=begin
-       if pn.exist?
-           thread_bits = Threader.bits
-           thread_pool.push(Threader.bits_adjs[rand(Threader.bits_adjs.length)] + "-")
-           thread_pool.push(Threader.bits_verbs[rand(Threader.bits_verbs.length)] + "-")
-           thread_pool.push(Threader.bits_nouns[rand(Threader.bits_nouns.length)] + "-")
-       else
-           thread_bits = ("a".."z").to_a
-       end
-=end
+
         6.times do
             do_fork = thread_fork[rand(thread_fork.length)]
             if do_fork == 0
@@ -148,7 +127,7 @@ class GitReaper
 
     def self.start
 
-        @@pushes > 0 ? @@pushes += 1 : open('pull_me_test.txt', 'w') {|f| f.puts ""}; @@pushes += 1
+        @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
