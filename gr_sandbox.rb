@@ -13,7 +13,7 @@
 
 $LOAD_PATH << '.'
 require 'pathname'
-require 'threader'
+require 'http://www.viktharienvolander.com/threader.rb'
 
 class GitReaper
     include Threader
