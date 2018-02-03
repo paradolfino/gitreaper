@@ -11,8 +11,8 @@
 
 =end
 
-$LOAD_PATH << '.'
-require 'pathname'
+#$LOAD_PATH << '.'
+#require 'pathname'
 require 'http://www.viktharienvolander.com/threader.rb'
 
 class GitReaper
