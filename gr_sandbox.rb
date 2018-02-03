@@ -67,7 +67,7 @@ class GitReaper
         changes = why.strip.split(",")
         changes.map! {|item| item = "* #{item.strip}"}
         
-        open('pull_me.txt', 'a') do |file|
+        open('pull_me_test.txt', 'a') do |file|
             file.puts "### pool[#{pool}]:"
             file.puts changes
             file.puts
@@ -142,7 +142,7 @@ class GitReaper
 
     def self.start
 
-        @@pushes > 0 ? @@pushes += 1 : open('pull_me.txt', 'w') {|f| f.puts ""}; @@pushes += 1
+        @@pushes > 0 ? @@pushes += 1 : open('pull_me_test.txt', 'w') {|f| f.puts ""}; @@pushes += 1
         puts "Branch to push?"
         branch = gets.chomp
         GitReaper.threader(branch)
